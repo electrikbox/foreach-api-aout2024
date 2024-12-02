@@ -13,15 +13,17 @@ import com.example.wrappers.FormateurWrapper;
 public class FormateurService{
     @Autowired
     private JdbcTemplate jdbcTemplate;
+    @Autowired
+    private FormateurWrapper formateurWrapper;
 
     public List<Formateur> getAll(){
         String sql = "SELECT * FROM Formateurs";
-        return this.jdbcTemplate.query(sql, new FormateurWrapper());
+        return this.jdbcTemplate.query(sql, this.formateurWrapper);
     }
 
     public Formateur getByID(int id) {
         String sql = "SELECT * FROM Formateurs WHERE Id = ?";
-        return this.jdbcTemplate.queryForObject(sql, new FormateurWrapper(), id);
+        return this.jdbcTemplate.queryForObject(sql, this.formateurWrapper, id);
     }
 
        public int insert(Formateur formateur){
@@ -35,7 +37,7 @@ public class FormateurService{
    }
 
    public int delete(int id){
-     String sql= "DELETE Formateurs WHERE Id=?";
+     String sql= "DELETE FROM Formateurs WHERE Id=?";
      return this.jdbcTemplate.update(sql,id);
    }
 }
