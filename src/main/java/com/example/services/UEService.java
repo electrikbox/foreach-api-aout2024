@@ -17,27 +17,27 @@ public class UEService{
     private UEWrapper ueWrapper;
 
     public List<UE> getAll(){
-        String sql = "SELECT * FROM UE";
+        String sql = "SELECT * FROM ue";
         return this.jdbcTemplate.query(sql, this.ueWrapper);
     }
 
     public UE getByID(int id){
-        String sql = "SELECT * FROM UE WHERE Id = ?";
+        String sql = "SELECT * FROM ue WHERE Id = ?";
         return this.jdbcTemplate.queryForObject(sql, this.ueWrapper, id);
     }
 
     public int insert(UE ue){
-        String sql = "INSERT INTO UE(Libelle) VALUES (?)";
+        String sql = "INSERT INTO ue(Libelle) VALUES (?)";
         return this.jdbcTemplate.update(sql, ue.getLibelle());
     }
 
     public int update(UE ue){
-        String sql = "UPDATE UE SET Libelle=? WHERE Id=?";
+        String sql = "UPDATE ue SET Libelle=? WHERE Id=?";
         return this.jdbcTemplate.update(sql, ue.getLibelle(), ue.getId());
     }
 
     public int delete(int id){
-        String sql = "DELETE FROM UE WHERE Id=?";
+        String sql = "DELETE FROM ue WHERE Id=?";
         return this.jdbcTemplate.update(sql, id);
     }
 }

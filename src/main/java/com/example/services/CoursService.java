@@ -18,27 +18,27 @@ public class CoursService{
     CoursWrapper coursWrapper;
     
     public List<Cours> getAll(){
-        String sql = "SELECT * FROM Cours";
+        String sql = "SELECT * FROM cours";
         return this.jdbcTemplate.query(sql, coursWrapper);
     }
 
     public Cours getByID(int id) {
-        String sql = "SELECT * FROM Cours WHERE Id = ?";
+        String sql = "SELECT * FROM cours WHERE Id = ?";
         return this.jdbcTemplate.queryForObject(sql, coursWrapper, id);
     }
 
     public int insert(Cours cours){
-        String sql = "INSERT INTO Cours(Date_Debut, Date_Fin, FK_UE, FK_Formateur) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO cours(Date_Debut, Date_Fin, FK_UE, FK_Formateur) VALUES (?,?,?,?)";
         return this.jdbcTemplate.update(sql, cours.getDateDebut(), cours.getDateFin(),cours.getUe().getId(), cours.getFormateur().getId());
     }
 
     public int update(Cours cours){
-        String sql = "UPDATE Cours set Date_Debut =?, Date_Fin=?, FK_UE=?, FK_Formateur=? WHERE Id=?";
+        String sql = "UPDATE cours set Date_Debut =?, Date_Fin=?, FK_UE=?, FK_Formateur=? WHERE Id=?";
         return this.jdbcTemplate.update(sql, cours.getDateDebut(), cours.getDateFin(),cours.getUe().getId(), cours.getFormateur().getId(), cours.getId());
     }
 
     public int delete(int id){
-        String sql = "DELETE FROM Cours WHERE Id= ?";
+        String sql = "DELETE FROM cours WHERE Id= ?";
         return this.jdbcTemplate.update(sql,id);
     }
 }

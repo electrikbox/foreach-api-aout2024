@@ -28,9 +28,9 @@ public class AppConfig {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/foreachspring");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/ForEachSpring");
         dataSource.setUsername("root");
-        dataSource.setPassword("");
+        dataSource.setPassword("passroot");
         return dataSource;
     }
 
