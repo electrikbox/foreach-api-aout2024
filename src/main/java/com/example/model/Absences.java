@@ -17,6 +17,10 @@ public class Absences {
         this.etudiants = etudiants;
     }
 
+    public Absences(){
+
+    }
+    
     public int getId() {
         return id;
     }
