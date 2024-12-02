@@ -1,6 +1,17 @@
 package com.example.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.model.Cours;
 import com.example.services.CoursService;
@@ -17,60 +28,92 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 // Préciser la route du controllers 
 // exemple /cours
 // Controllers
+@Controller
+@RequestMapping("/cours")
 public class CoursController {
-    private final CoursService coursService;
-    private final ObjectMapper objectMapper;
-
     @Autowired
-    public CoursController() {
-        this.coursService = new CoursService();
-        this.objectMapper = new ObjectMapper();
-    }
+    private CoursService coursService;
+    @Autowired
+    private ObjectMapper objectMapper;
 
     // GET
     //exemple /
-    //Utilisateur va devoir aller sur /cours/
-    public String getAll(){
-        String jsonData = "";
+    //Utilisateur va devoir aller sur /cours
+    @GetMapping
+    public ResponseEntity<String> getAll() {
         try {
-            jsonData = objectMapper.writeValueAsString(coursService.getAll());
+            String jsonData = objectMapper.writeValueAsString(coursService.getAll());
+            HttpHeaders headers = new HttpHeaders();
+            headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
+            return new ResponseEntity<>(jsonData, headers, HttpStatus.OK);
         } catch (JsonProcessingException ex) {
+            System.out.println(ex);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return jsonData;
     }
-
 
     // GET
     // exemple /{id}
     //Utilisateur va devoir aller sur /cours/1
-    public String getByID(int id){
-        String jsonData = "";
+    @GetMapping("/{id}")
+    public ResponseEntity<String> getByID(@PathVariable("id") int id){
         try {
-            jsonData = objectMapper.writeValueAsString(coursService.getByID(id));
+            String jsonData = objectMapper.writeValueAsString(coursService.getByID(id));
+            HttpHeaders headers = new HttpHeaders();
+            headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
+            return new ResponseEntity<>(jsonData, headers, HttpStatus.OK);
         } catch (JsonProcessingException ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return jsonData;
     }
 
     //POST 
     //exemple /
     //Utilisateur va devoir aller sur /cours/
-    public void insert(Cours etudiant){
-        coursService.insert(etudiant);
+    @PostMapping
+    public ResponseEntity<String> insert(@RequestBody Cours cours){
+        try {
+            coursService.insert(cours);
+            HttpHeaders headers = new HttpHeaders();
+            headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
+            return new ResponseEntity<>("Cours ajouter", headers, HttpStatus.OK);
+        } catch (Exception ex) {
+            System.out.println(ex);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     // PATCH/PUT
     //exemple /{id}
     //Utilisateur va devoir aller sur /cours/1
-    public void update(Cours cours, int id) {
-        cours.setId(id);
-        coursService.update(cours);
+    @PatchMapping("/{id}")
+    public ResponseEntity<String> update(@PathVariable("id") int id, @RequestBody Cours cours) {
+        try {
+            cours.setId(id);
+            coursService.update(cours);
+            HttpHeaders headers = new HttpHeaders();
+            headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
+            return new ResponseEntity<>("Cours modifié", headers, HttpStatus.OK);
+        } catch (Exception e) {
+            System.out.println(e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            // TODO: handle exception
+        }
     }
 
     // DELETE
     //exemple /{id}
     //Utilisateur va devoir aller sur /cours/1
-    public void delete(int id){
-        coursService.delete(id);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable("id") int id){
+        try {
+            coursService.delete(id);
+            HttpHeaders headers = new HttpHeaders();
+            headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
+            return new ResponseEntity<>("Cours supprimé", headers, HttpStatus.OK);
+        } catch (Exception e) {
+            System.out.println(e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

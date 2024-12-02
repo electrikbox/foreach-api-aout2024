@@ -4,35 +4,40 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Service;
 
 import com.example.model.UE;
 import com.example.wrappers.UEWrapper;
 
-public class UEService extends DatabaseService{
-    
+@Service
+public class UEService{
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+    @Autowired
+    private UEWrapper ueWrapper;
 
     public List<UE> getAll(){
         String sql = "SELECT * FROM UE";
-        return super.getJdbcTemplate().query(sql, new UEWrapper());
+        return this.jdbcTemplate.query(sql, this.ueWrapper);
     }
 
     public UE getByID(int id){
         String sql = "SELECT * FROM UE WHERE Id = ?";
-        return super.getJdbcTemplate().queryForObject(sql, new UEWrapper(), id);
+        return this.jdbcTemplate.queryForObject(sql, this.ueWrapper, id);
     }
 
     public int insert(UE ue){
         String sql = "INSERT INTO UE(Libelle) VALUES (?)";
-        return super.getJdbcTemplate().update(sql, ue.getLibelle());
+        return this.jdbcTemplate.update(sql, ue.getLibelle());
     }
 
     public int update(UE ue){
         String sql = "UPDATE UE SET Libelle=? WHERE Id=?";
-        return super.getJdbcTemplate().update(sql, ue.getLibelle(), ue.getId());
+        return this.jdbcTemplate.update(sql, ue.getLibelle(), ue.getId());
     }
 
     public int delete(int id){
         String sql = "DELETE FROM UE WHERE Id=?";
-        return super.getJdbcTemplate().update(sql, id);
+        return this.jdbcTemplate.update(sql, id);
     }
 }

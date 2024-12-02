@@ -12,6 +12,10 @@ public class UE {
         this.id = id;
         this.libelle = libelle;
     }
+    
+    public UE(){
+        
+    }
 
     public int getId() {
         return id;

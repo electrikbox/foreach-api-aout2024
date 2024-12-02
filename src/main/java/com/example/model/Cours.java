@@ -28,6 +28,10 @@ public class Cours {
         this.etudiants = etudiants;
     }
 
+    public Cours(){
+            
+    }
+
     public int getId() {
         return id;
     }

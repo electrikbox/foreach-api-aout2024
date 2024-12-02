@@ -15,19 +15,22 @@ public class EtudiantService {
   @Autowired
   private JdbcTemplate jdbcTemplate;
    
+  @Autowired
+  EtudiantWrapper etudiantWrapper;
+  
   public List<Etudiant> getAll(){
         String sql = "SELECT * FROM Etudiants;";
-        return this.jdbcTemplate.query(sql, new EtudiantWrapper());
+        return this.jdbcTemplate.query(sql, this.etudiantWrapper);
    } 
 
    public Etudiant getByID(int id){
         String sql = "SELECT * FROM Etudiants WHERE Id= ?";
-        return this.jdbcTemplate.queryForObject(sql, new EtudiantWrapper(),id);
+        return this.jdbcTemplate.queryForObject(sql, this.etudiantWrapper,id);
    }
 
    public List<Etudiant> getByCourID(int id){
         String sql = "SELECT ET.* FROM Etudiants ET INNER JOIN SUIVRE SU ON SU.FK_Etudiant = ET.Id WHERE FK_Cour=?;";
-        return this.jdbcTemplate.query(sql, new EtudiantWrapper(),id);
+        return this.jdbcTemplate.query(sql, this.etudiantWrapper,id);
    }
 
    public int insert(Etudiant etudiant){
