@@ -9,6 +9,11 @@ public class Suivre {
         this.cours = cours;
     }
 
+    public Suivre() {
+    }
+
+
+
     public Etudiant getEtudiants() {
         return etudiants;
     }

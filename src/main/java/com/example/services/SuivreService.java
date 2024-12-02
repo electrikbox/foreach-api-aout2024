@@ -3,28 +3,32 @@ package com.example.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Service;
 
 import com.example.model.Cours;
 import com.example.model.Etudiant;
 import com.example.model.Suivre;
 import com.example.wrappers.SuivreWrapper;
 
+@Service
 public class SuivreService extends DatabaseService{
+
+    @Autowired
+    private SuivreWrapper suivreWrapper;
 
     public List<Suivre> getAll(){
         String sql = "SELECT * FROM Suivre;";
-        return super.getJdbcTemplate().query(sql, new SuivreWrapper());
+        return super.getJdbcTemplate().query(sql, this.suivreWrapper);
     }
 
     public List<Suivre> getByEtudiantID(int id){
         String sql = "SELECT * FROM Suivre WHERE FK_Etudiant=?";
-        return super.getJdbcTemplate().query(sql, new SuivreWrapper(), id);
+        return super.getJdbcTemplate().query(sql, this.suivreWrapper, id);
     }
     
     public List<Suivre> getByCourID(int id){
         String sql = "SELECT * FROM Suivre WHERE FK_Cour=?";
-        return super.getJdbcTemplate().query(sql, new SuivreWrapper(), id);
+        return super.getJdbcTemplate().query(sql, this.suivreWrapper, id);
     }
 
     public int deleteAllByEtudiantID(int id){
@@ -55,5 +59,10 @@ public class SuivreService extends DatabaseService{
     public int insert(Cours cour, Etudiant etudiant){
         String sql ="INSERT INTO Suivre VALUES (?,?)";
         return super.getJdbcTemplate().update(sql, cour.getId(), etudiant.getId());
+    }
+
+    public int insert(Suivre suivre){
+        String sql ="INSERT INTO Suivre(FK_Cour, FK_Etudiant) VALUES (?,?)";
+        return super.getJdbcTemplate().update(sql, suivre.getCours().getId(), suivre.getEtudiants().getId());
     }
 }
