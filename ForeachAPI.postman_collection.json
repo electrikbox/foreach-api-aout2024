@@ -1,0 +1,737 @@
+{
+	"info": {
+		"_postman_id": "48b13453-265f-49c9-b54b-69c465db53ca",
+		"name": "ForeachAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26750770"
+	},
+	"item": [
+		{
+			"name": "ETUDIANTS",
+			"item": [
+				{
+					"name": "GET_ETUDIANTS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/etudiants",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"etudiants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_ETUDIANTS_BY_ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/etudiants/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"etudiants",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD_Etudiants",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nom\" : \"Foreach\",\r\n    \"prenom\" : \"Théo\",\r\n    \"email\" : \"theobis.foreach@gmail.com\",\r\n    \"telephone\" : \"0698213289\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/etudiants",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"etudiants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE_ETUDIANT",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nom\" : \"BIALASIKBIS\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/etudiants/5",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"etudiants",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE_Etudiant",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/etudiants/5",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"etudiants",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "FORMATEUR",
+			"item": [
+				{
+					"name": "GET_FORMATEUR",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/formateurs",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"formateurs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_FORMATEUR_BY_ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/formateurs/2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"formateurs",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD_FORMATEUR",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nom\": \"STAWI\",\r\n    \"prenom\": \"Pierre\",\r\n    \"email\": \"pstawi@fcdigital.fr\",\r\n    \"telephone\": \"0666666667\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/formateurs",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"formateurs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE_ETUDIANT",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nom\" : \"STAWIBIS\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/formateurs/2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"formateurs",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE_FORMATEUR",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/formateurs/2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"formateurs",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cours",
+			"item": [
+				{
+					"name": "GET_COURS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/cours",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"cours"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_COURS_BY_ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/cours/3",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"cours",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD_COURS",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dateDebut\": \"2024-12-02T08:00:00\",\r\n    \"dateFin\": \"2024-12-02T17:00:00\",\r\n    \"ue\": {\r\n        \"id\" : 1,\r\n        \"libelle\" : \"JAVA SPRING\"\r\n    },\r\n    \"formateur\": {\r\n        \"id\" : 1,\r\n        \"nom\" : \"BIALASIK\",\r\n        \"prenom\" : \"Théo\",\r\n        \"email\" : \"tbialasik@fcdigital.fr\",\r\n        \"telephone\" : \"0666666666\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/cours",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"cours"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE_Cours",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 3,\r\n    \"dateDebut\": \"2024-12-02T07:00:00\",\r\n    \"dateFin\": \"2024-12-02T16:00:00\",\r\n    \"ue\": {\r\n        \"id\": 1,\r\n        \"libelle\": \"JAVA SPRING\"\r\n    },\r\n    \"formateur\": {\r\n        \"id\": 1,\r\n        \"nom\": \"BIALASIK\",\r\n        \"prenom\": \"Théo\",\r\n        \"email\": \"tbialasik@fcdigital.fr\",\r\n        \"telephone\": \"0666666666\"\r\n    },\r\n    \"etudiants\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/cours/3",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"cours",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE_Cours",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/cours/3",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"cours",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UE",
+			"item": [
+				{
+					"name": "GET_UE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/ue",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"ue"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_UE_BY_ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/ue/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"ue",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD_UE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"libelle\" : \"TypeScript\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/ue",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"ue"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE_UE",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"libelle\" : \"TS\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/ue/3",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"ue",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE_UE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/ue/3",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"ue",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ABSENCES",
+			"item": [
+				{
+					"name": "GET_ABSENCES",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/absences",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"absences"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_UE_BY_ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/absences/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"absences",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD_ABSENCES",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"dateDebut\": \"2024-12-02T07:00:00\",\r\n        \"dateFin\": \"2024-12-02T016:00:00\",\r\n        \"type\": \"Arret maladie\",\r\n        \"etudiants\": {\r\n            \"id\": 1,\r\n            \"nom\": \"BIALASIK\",\r\n            \"prenom\": \"Théo\",\r\n            \"email\": \"tbialasik@fcdigital.fr\",\r\n            \"telephone\": \"0666666666\"\r\n        }\r\n    }       ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/absences",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"absences"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE_ABSENCES",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"dateDebut\": 1728511200000,\r\n    \"dateFin\": 1728511200000,\r\n    \"type\": \"Congé Bis\",\r\n    \"etudiants\": {\r\n        \"id\": 1,\r\n        \"nom\": \"BIALASIK\",\r\n        \"prenom\": \"Théo\",\r\n        \"email\": \"tbialasik@fcdigital.fr\",\r\n        \"telephone\": \"0666666666\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/absences/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"absences",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE_ABSENCES",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/absences/2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"absences",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SUIVRES",
+			"item": [
+				{
+					"name": "GET_SUIVRE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/suivre",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"suivre"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_SUIVRE_BY_ETUDIANT_ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/suivre/1/etudiant",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"suivre",
+								"1",
+								"etudiant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_SUIVRE_BY_COURS_ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/suivre/1/cours",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"suivre",
+								"1",
+								"cours"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD_SUIVRE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"cours\" : {\r\n        \"id\" : 1\r\n      },\r\n      \"etudiants\" : {\r\n        \"id\" : 2\r\n      }\r\n}       ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/suivre",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"suivre"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE_SUIVRE_BY_COUR_ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/suivre/2/cours",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"suivre",
+								"2",
+								"cours"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE_SUIVRE_BY_ETUDIANT_ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/suivre/1/etudiant",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"suivre",
+								"1",
+								"etudiant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE_SUIVRE_BY_ETUDIANT_AND_COUR",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/suivre/1/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"suivre",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "http://127.0.0.1:8080/foreach-api",
+			"type": "string"
+		}
+	]
+}
