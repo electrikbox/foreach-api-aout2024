@@ -1,0 +1,75 @@
+@base = http://localhost:8080/foreach-api
+
+
+# livreurs =========================================
+
+GET {{base}}/livreurs HTTP/1.1
+
+###
+
+GET {{base}}/livreurs/1 HTTP/1.1
+
+###
+
+POST {{base}}/livreurs HTTP/1.1
+content-type: application/json
+
+{
+    "nom": "Michel",
+    "prenom": "michel",
+    "telephone": "0662666007",
+    "email": "michel@michel.com"
+}
+
+###
+
+PATCH {{base}}/livreurs/1 HTTP/1.1
+content-type: application/json
+
+{
+    "nom": "Michel",
+    "email": "michel@newmichel.com"
+}
+
+###
+
+DELETE {{base}}/livreurs/1 HTTP/1.1
+
+###
+
+# colis =========================================
+
+GET {{base}}/colis HTTP/1.1
+
+###
+
+GET {{base}}/colis/1 HTTP/1.1
+
+###
+
+POST {{base}}/colis HTTP/1.1
+content-type: application/json
+
+{
+    "nom": "Michel",
+    "prenom": "michel",
+    "telephone": "0662666007",
+    "email": "michel@michel.com"
+}
+
+###
+
+PATCH {{base}}/colis/1 HTTP/1.1
+content-type: application/json
+
+{
+    "nom": "Michel",
+    "email": "michel@newmichel.com"
+}
+
+###
+
+DELETE {{base}}/colis/1 HTTP/1.1
+
+###
+

@@ -12,36 +12,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.model.Etudiant;
-import com.example.services.EtudiantService;
+import com.example.model.Livreur;
+import com.example.services.LivreurService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
-// 5 TYPES DE REQUÊTES HTTP/HTTPS
-// GET -> Récuperer des données
-// POST -> Ajouter des données
-// DELETE -> Supprimer des données 
-// PATCH -> Modifier des données 
-// PUT -> Modifier des données
-
-// Préciser la route du controllers 
-// exemple /etudiants
-// Controllers
 @Controller
-@RequestMapping("/etudiants")
-public class EtudiantController {
+@RequestMapping("/livreurs")
+public class LivreurController {
 
 
     @Autowired
-    private EtudiantService etudiantService;
+    private LivreurService livreurService;
     @Autowired
     private ObjectMapper objectMapper;
 
     @GetMapping
     public ResponseEntity<String> getAll() {
         try {
-            String jsonData = objectMapper.writeValueAsString(etudiantService.getAll());
+            String jsonData = objectMapper.writeValueAsString(livreurService.getAll());
             HttpHeaders headers = new HttpHeaders();
             headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
             return new ResponseEntity<>(jsonData, headers, HttpStatus.OK);
@@ -53,7 +42,7 @@ public class EtudiantController {
     @GetMapping("/{id}")
     public ResponseEntity<String> getByID(@PathVariable("id") int id) {
         try {
-            String jsonData = objectMapper.writeValueAsString(etudiantService.getByID(id));
+            String jsonData = objectMapper.writeValueAsString(livreurService.getByID(id));
             HttpHeaders headers = new HttpHeaders();
             headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
             return new ResponseEntity<>(jsonData, headers, HttpStatus.OK);
@@ -62,14 +51,11 @@ public class EtudiantController {
         }
     }
 
-    //POST 
-    //exemple /
-    //Utilisateur va devoir aller sur /etudiants/
     @PostMapping
-    public ResponseEntity<String> insert(@RequestBody Etudiant etudiant){
+    public ResponseEntity<String> insert(@RequestBody Livreur livreur){
         try {
-            etudiantService.insert(etudiant);
-            String jsonData = objectMapper.writeValueAsString("Etudiant ajouté");
+            livreurService.insert(livreur);
+            String jsonData = objectMapper.writeValueAsString("Livreur ajouté");
             HttpHeaders headers = new HttpHeaders();
             headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
             return new ResponseEntity<>(jsonData, headers, HttpStatus.CREATED);
@@ -80,26 +66,23 @@ public class EtudiantController {
         
     }
 
-    // PATCH/PUT
-    //exemple /{id}
-    //Utilisateur va devoir aller sur /etudiants/1
     @PatchMapping("/{id}")
-    public ResponseEntity<String> update(@RequestBody Etudiant etudiant, @PathVariable("id") int id) {
+    public ResponseEntity<String> update(@RequestBody Livreur livreur, @PathVariable("id") int id) {
         try {
-            Etudiant existingEtudiant = etudiantService.getByID(id);
+            Livreur existingLivreur = livreurService.getByID(id);
             HttpHeaders headers = new HttpHeaders();
             headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
-            if (existingEtudiant == null) {
-                return new ResponseEntity<>("{\"error\": \"Etudiant not found\"}", headers , HttpStatus.NOT_FOUND);
+            if (existingLivreur == null) {
+                return new ResponseEntity<>("{\"error\": \"Livreur not found\"}", headers , HttpStatus.NOT_FOUND);
             }
 
-            if (etudiant.getNom() != null) existingEtudiant.setNom(etudiant.getNom());
-            if (etudiant.getPrenom() != null) existingEtudiant.setPrenom(etudiant.getPrenom());
-            if (etudiant.getEmail() != null) existingEtudiant.setEmail(etudiant.getEmail());
-            if (etudiant.getTelephone() != null) existingEtudiant.setTelephone(etudiant.getTelephone());
+            if (livreur.getNom() != null) existingLivreur.setNom(livreur.getNom());
+            if (livreur.getPrenom() != null) existingLivreur.setPrenom(livreur.getPrenom());
+            if (livreur.getTelephone() != null) existingLivreur.setTelephone(livreur.getTelephone());
+            if (livreur.getEmail() != null) existingLivreur.setEmail(livreur.getEmail());
 
-            etudiantService.update(existingEtudiant);
-            String jsonData = objectMapper.writeValueAsString("Etudiant Modifié");
+            livreurService.update(existingLivreur);
+            String jsonData = objectMapper.writeValueAsString("Livreur Modifié");
             headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
             return new ResponseEntity<>(jsonData, headers, HttpStatus.CREATED);
         } catch (JsonProcessingException e) {
@@ -108,16 +91,13 @@ public class EtudiantController {
         }
     }
 
-    // DELETE
-    //exemple /{id}
-    //Utilisateur va devoir aller sur /etudiants/1
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable("id") int id){
         try {
-            etudiantService.delete(id);
+            livreurService.delete(id);
             HttpHeaders headers = new HttpHeaders();
             headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
-            return new ResponseEntity<>("{\"message\": \"Etudiant supprimé\"}", headers, HttpStatus.OK);
+            return new ResponseEntity<>("{\"message\": \"Livreur supprimé\"}", headers, HttpStatus.OK);
         } catch (Exception e) {
             System.out.println(e);
             return new ResponseEntity<>("Not Deleted", HttpStatus.INTERNAL_SERVER_ERROR);

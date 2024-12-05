@@ -13,6 +13,7 @@ import com.example.config.AppConfig;
 public class App extends AbstractAnnotationConfigDispatcherServletInitializer 
 {
     public static void main(String[] args) {
+        @SuppressWarnings({ "unused", "resource" })
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
         System.out.println("Spring Application Context initialized");
     }

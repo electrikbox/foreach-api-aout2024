@@ -16,19 +16,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @EnableWebMvc
 @ComponentScan(basePackages = "com.example")
 public class AppConfig {
-    // @Bean
-    // public InternalResourceViewResolver viewResolver() {
-    //     InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-    //     resolver.setPrefix("/WEB-INF/views/");
-    //     resolver.setSuffix(".jsp");
-    //     return resolver;
-    // }
 
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/ForEachSpring");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/ForEachLivraisons");
         dataSource.setUsername("root");
         dataSource.setPassword("passroot");
         return dataSource;

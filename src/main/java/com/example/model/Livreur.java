@@ -1,23 +1,31 @@
 package com.example.model;
 
-public class Formateur {
+public class Livreur {
+
     private int id;
     private String nom;
     private String prenom;
-    private String email;
     private String telephone;
+    private String email;
 
-    public Formateur(int id, String nom, String prenom, String email, String telephone) {
+    public Livreur(int id, String nom, String prenom, String telephone, String email) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
-        this.email = email;
         this.telephone = telephone;
+        this.email = email;
     }
 
-    public Formateur() {
+    public Livreur(String nom, String prenom, String telephone, String email) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.telephone = telephone;
+        this.email = email;
     }
-    
+
+    public Livreur() {
+    }
+
     public int getId() {
         return id;
     }
@@ -42,14 +50,6 @@ public class Formateur {
         this.prenom = prenom;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getTelephone() {
         return telephone;
     }
@@ -58,5 +58,11 @@ public class Formateur {
         this.telephone = telephone;
     }
 
-    
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
