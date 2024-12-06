@@ -1,4 +1,5 @@
 package com.example.controller;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -17,16 +18,34 @@ import com.example.services.ColisService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * ColisController is a REST controller that handles HTTP requests for managing Colis entities.
+ * It provides endpoints to perform CRUD operations on Colis.
+ * 
+ * Endpoints:
+ * - GET /colis: Retrieve all Colis.
+ * - GET /colis/{id}: Retrieve a Colis by its ID.
+ * - POST /colis: Insert a new Colis.
+ * - PATCH /colis/{id}: Update an existing Colis by its ID.
+ * - DELETE /colis/{id}: Delete a Colis by its ID.
+ */
 @Controller
 @RequestMapping("/colis")
 public class ColisController {
 
-
     @Autowired
     private ColisService colisService;
+
     @Autowired
     private ObjectMapper objectMapper;
 
+    /**
+     * Handles HTTP GET requests to retrieve all colis data.
+     *
+     * @return a ResponseEntity containing the JSON representation of all colis data
+     *         and HTTP status OK if successful, or HTTP status INTERNAL_SERVER_ERROR
+     *         if an error occurs during JSON processing.
+     */
     @GetMapping
     public ResponseEntity<String> getAll() {
         try {
@@ -39,6 +58,13 @@ public class ColisController {
         }
     }
 
+    /**
+     * Handles HTTP GET requests to retrieve a Colis by its ID.
+     *
+     * @param id the ID of the Colis to retrieve
+     * @return a ResponseEntity containing the JSON representation of the Colis and HTTP status 200 (OK) if found,
+     *         or a ResponseEntity with HTTP status 404 (Not Found) if the Colis is not found or if there is an error processing the JSON.
+     */
     @GetMapping("/{id}")
     public ResponseEntity<String> getByID(@PathVariable("id") int id) {
         try {
@@ -51,6 +77,12 @@ public class ColisController {
         }
     }
 
+    /**
+     * Inserts a new Colis object into the system.
+     *
+     * @param colis the Colis object to be inserted
+     * @return a ResponseEntity containing a JSON message indicating success or an error message
+     */
     @PostMapping
     public ResponseEntity<String> insert(@RequestBody Colis colis){
         try {
@@ -64,6 +96,14 @@ public class ColisController {
         }
     }
 
+    /**
+     * Updates an existing Colis with the provided details.
+     *
+     * @param colis the Colis object containing updated details
+     * @param id the ID of the Colis to be updated
+     * @return a ResponseEntity containing a success message and HTTP status code,
+     *         or an error message and HTTP status code if the Colis is not found or an error occurs
+     */
     @PatchMapping("/{id}")
     public ResponseEntity<String> update(@RequestBody Colis colis, @PathVariable("id") int id) {
         try {
@@ -88,6 +128,13 @@ public class ColisController {
         }
     }
 
+    /**
+     * Deletes a colis (package) by its ID.
+     *
+     * @param id the ID of the colis to be deleted
+     * @return a ResponseEntity containing a success message and HTTP status OK if the deletion is successful,
+     *         or an error message and HTTP status INTERNAL_SERVER_ERROR if the deletion fails
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable("id") int id){
         try {

@@ -28,6 +28,7 @@ public class App extends AbstractAnnotationConfigDispatcherServletInitializer
         return new Class[] { AppConfig.class };
     }
 
+    @SuppressWarnings("null")
     @Override
     protected String[] getServletMappings() {
         return new String[] { "/" };

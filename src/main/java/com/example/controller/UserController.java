@@ -13,44 +13,44 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.model.Livreur;
-import com.example.services.LivreurService;
+import com.example.model.User;
+import com.example.services.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * LivreurController is a REST controller that handles HTTP requests for managing Livreurs.
- * It provides endpoints to get all Livreurs, get a Livreur by ID, insert a new Livreur,
- * update an existing Livreur, and delete a Livreur by ID.
+ * UserController is a REST controller that handles HTTP requests for managing users.
+ * It provides endpoints for retrieving, creating, updating, and deleting users.
  * 
  * Endpoints:
- * - GET /livreurs: Retrieves all Livreurs.
- * - GET /livreurs/{id}: Retrieves a Livreur by its ID.
- * - POST /livreurs: Inserts a new Livreur.
- * - PATCH /livreurs/{id}: Updates an existing Livreur by its ID.
- * - DELETE /livreurs/{id}: Deletes a Livreur by its ID.
+ * 
+ * - GET /users: Retrieves all users.
+ * - GET /users/{id}: Retrieves a user by their ID.
+ * - POST /users: Creates a new user.
+ * - PATCH /users/{id}: Updates an existing user by their ID.
+ * - DELETE /users/{id}: Deletes a user by their ID.
  */
 @Controller
-@RequestMapping("/livreurs")
-public class LivreurController {
+@RequestMapping("/users")
+public class UserController {
 
     @Autowired
-    private LivreurService livreurService;
+    private UserService userService;
 
     @Autowired
     private ObjectMapper objectMapper;
 
     /**
-     * Handles HTTP GET requests to retrieve all Livreur entities.
+     * Handles the HTTP GET request to retrieve all users.
      *
-     * @return a ResponseEntity containing a JSON representation of all Livreur entities
-     *         and an HTTP status code of 200 (OK) if successful, or 500 (Internal Server Error)
-     *         if there is a JsonProcessingException.
+     * @return a ResponseEntity containing the JSON representation of all users
+     *         and HTTP status 200 (OK) if successful, or HTTP status 500 (Internal Server Error)
+     *         if there is an error processing the JSON.
      */
     @GetMapping
     public ResponseEntity<String> getAll() {
         try {
-            String jsonData = objectMapper.writeValueAsString(livreurService.getAll());
+            String jsonData = objectMapper.writeValueAsString(userService.getAll());
             HttpHeaders headers = new HttpHeaders();
             headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
             return new ResponseEntity<>(jsonData, headers, HttpStatus.OK);
@@ -60,16 +60,16 @@ public class LivreurController {
     }
 
     /**
-     * Handles HTTP GET requests to retrieve a Livreur by its ID.
+     * Retrieves a user by their ID.
      *
-     * @param id the ID of the Livreur to retrieve
-     * @return a ResponseEntity containing the JSON representation of the Livreur and HTTP status 200 (OK) if found,
-     *         or a ResponseEntity with a "Not Found" message and HTTP status 404 (Not Found) if the Livreur is not found
+     * @param id the ID of the user to retrieve
+     * @return a ResponseEntity containing the user data in JSON format and HTTP status 200 (OK) if found,
+     *         or a ResponseEntity with a "Not Found" message and HTTP status 404 (Not Found) if the user is not found
      */
     @GetMapping("/{id}")
     public ResponseEntity<String> getByID(@PathVariable("id") int id) {
         try {
-            String jsonData = objectMapper.writeValueAsString(livreurService.getByID(id));
+            String jsonData = objectMapper.writeValueAsString(userService.getByID(id));
             HttpHeaders headers = new HttpHeaders();
             headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
             return new ResponseEntity<>(jsonData, headers, HttpStatus.OK);
@@ -79,17 +79,16 @@ public class LivreurController {
     }
 
     /**
-     * Inserts a new Livreur into the system.
+     * Inserts a new user into the system.
      *
-     * @param livreur the Livreur object to be inserted
+     * @param user the user to be inserted
      * @return a ResponseEntity containing a JSON message indicating the result of the operation
-     *         and the appropriate HTTP status code
      */
     @PostMapping
-    public ResponseEntity<String> insert(@RequestBody Livreur livreur){
+    public ResponseEntity<String> insert(@RequestBody User user) {
         try {
-            livreurService.insert(livreur);
-            String jsonData = objectMapper.writeValueAsString("Livreur ajouté");
+            userService.insert(user);
+            String jsonData = objectMapper.writeValueAsString("User ajouté");
             HttpHeaders headers = new HttpHeaders();
             headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
             return new ResponseEntity<>(jsonData, headers, HttpStatus.CREATED);
@@ -99,32 +98,31 @@ public class LivreurController {
     }
 
     /**
-     * Updates an existing Livreur with the provided details.
+     * Updates an existing user with the provided details.
      *
-     * @param livreur The Livreur object containing updated details.
-     * @param id The ID of the Livreur to be updated.
+     * @param user The user details to update.
+     * @param id The ID of the user to update.
      * @return A ResponseEntity containing a JSON message indicating the result of the update operation.
-     *         - If the Livreur is not found, returns a 404 Not Found status with an error message.
+     *         - If the user is not found, returns a 404 Not Found status with an error message.
      *         - If the update is successful, returns a 201 Created status with a success message.
-     *         - If there is a JSON processing error, returns a 500 Internal Server Error status.
+     *         - If there is an error processing the JSON, returns a 500 Internal Server Error status.
      */
     @PatchMapping("/{id}")
-    public ResponseEntity<String> update(@RequestBody Livreur livreur, @PathVariable("id") int id) {
+    public ResponseEntity<String> update(@RequestBody User user, @PathVariable("id") int id) {
         try {
-            Livreur existingLivreur = livreurService.getByID(id);
+            User existingUser = userService.getByID(id);
             HttpHeaders headers = new HttpHeaders();
             headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
-            if (existingLivreur == null) {
-                return new ResponseEntity<>("{\"error\": \"Livreur not found\"}", headers , HttpStatus.NOT_FOUND);
+            if (existingUser == null) {
+                return new ResponseEntity<>("{\"error\": \"User not found\"}", headers, HttpStatus.NOT_FOUND);
             }
 
-            if (livreur.getNom() != null) existingLivreur.setNom(livreur.getNom());
-            if (livreur.getPrenom() != null) existingLivreur.setPrenom(livreur.getPrenom());
-            if (livreur.getTelephone() != null) existingLivreur.setTelephone(livreur.getTelephone());
-            if (livreur.getEmail() != null) existingLivreur.setEmail(livreur.getEmail());
+            if (user.getNom() != null) existingUser.setNom(user.getNom());
+            if (user.getPrenom() != null) existingUser.setPrenom(user.getPrenom());
+            if (user.getEmail() != null) existingUser.setEmail(user.getEmail());
 
-            livreurService.update(existingLivreur);
-            String jsonData = objectMapper.writeValueAsString("Livreur Modifié");
+            userService.update(existingUser);
+            String jsonData = objectMapper.writeValueAsString("User Modifié");
             headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
             return new ResponseEntity<>(jsonData, headers, HttpStatus.CREATED);
         } catch (JsonProcessingException e) {
@@ -133,19 +131,19 @@ public class LivreurController {
     }
 
     /**
-     * Deletes a Livreur by its ID.
+     * Deletes a user by their ID.
      *
-     * @param id the ID of the Livreur to be deleted
-     * @return a ResponseEntity containing a success message and HTTP status OK if the deletion is successful,
+     * @param id the ID of the user to be deleted
+     * @return a ResponseEntity containing a success message and HTTP status OK if the user is deleted,
      *         or an error message and HTTP status INTERNAL_SERVER_ERROR if the deletion fails
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> delete(@PathVariable("id") int id){
+    public ResponseEntity<String> delete(@PathVariable("id") int id) {
         try {
-            livreurService.delete(id);
+            userService.delete(id);
             HttpHeaders headers = new HttpHeaders();
             headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
-            return new ResponseEntity<>("{\"message\": \"Livreur supprimé\"}", headers, HttpStatus.OK);
+            return new ResponseEntity<>("{\"message\": \"user supprimé\"}", headers, HttpStatus.OK);
         } catch (Exception e) {
             System.out.println(e);
             return new ResponseEntity<>("Not Deleted", HttpStatus.INTERNAL_SERVER_ERROR);

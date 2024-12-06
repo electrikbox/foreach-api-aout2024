@@ -3,23 +3,20 @@ package com.example.model;
 public class Colis {
 
     private int id;
-    private int livraisonId;
     private String description;
     private Float poids;
     private String dimensions;
     private Float valeur;
 
-    public Colis(int id, int livraisonId, String description, Float poids, String dimensions, Float valeur) {
+    public Colis(int id, String description, Float poids, String dimensions, Float valeur) {
         this.id = id;
-        this.livraisonId = livraisonId;
         this.description = description;
         this.poids = poids;
         this.dimensions = dimensions;
         this.valeur = valeur;
     }
 
-    public Colis(int livraisonId, String description, Float poids, String dimensions, Float valeur) {
-        this.livraisonId = livraisonId;
+    public Colis(String description, Float poids, String dimensions, Float valeur) {
         this.description = description;
         this.poids = poids;
         this.dimensions = dimensions;
@@ -35,14 +32,6 @@ public class Colis {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getLivraisonId() {
-        return livraisonId;
-    }
-
-    public void setLivraisonId(int livraisonId) {
-        this.livraisonId = livraisonId;
     }
 
     public String getDescription() {

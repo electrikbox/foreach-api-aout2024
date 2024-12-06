@@ -11,50 +11,46 @@ import com.example.wrappers.ColisWrapper;
 
 @Service
 public class ColisService {
-    
-  @Autowired
-  private JdbcTemplate jdbcTemplate;
-   
-  @Autowired
-  ColisWrapper colisWrapper;
-  
-  public List<Colis> getAll(){
-    String sql = "SELECT * FROM colis;";
-    return this.jdbcTemplate.query(sql, this.colisWrapper);
-  } 
 
-  public Colis getByID(int id){
-    String sql = "SELECT * FROM colis WHERE Id= ?";
-    return this.jdbcTemplate.queryForObject(sql, this.colisWrapper,id);
-  }
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
-  public int insert(Colis colis){
-    String sql = "INSERT INTO colis(livraisonId, description, poids, dimensions, valeur) VALUES (?,?,?,?,?)";
-    return this.jdbcTemplate.update(
-      sql,
-      colis.getLivraisonId(),
-      colis.getDescription(),
-      colis.getPoids(),
-      colis.getDimensions(),
-      colis.getValeur()
-    );
-  }
+    @Autowired
+    private ColisWrapper colisWrapper;
 
-  public int update(Colis colis){
-    String sql = "UPDATE colis set livraisonId=?, description=?, poids=?, dimensions=?, valeur=? WHERE Id=?";
-    return this.jdbcTemplate.update(
-      sql,
-      colis.getLivraisonId(),
-      colis.getDescription(),
-      colis.getPoids(),
-      colis.getDimensions(),
-      colis.getValeur(),
-      colis.getId()
-    );
-  }
+    public List<Colis> getAll() {
+        String sql = "SELECT * FROM colis;";
+        return this.jdbcTemplate.query(sql, this.colisWrapper);
+    }
 
-  public int delete(int id){
-    String sql= "DELETE FROM colis WHERE Id=?";
-    return this.jdbcTemplate.update(sql,id);
-  } 
+    public Colis getByID(int id) {
+        String sql = "SELECT * FROM colis WHERE Id= ?";
+        return this.jdbcTemplate.queryForObject(sql, this.colisWrapper, id);
+    }
+
+    public int insert(Colis colis) {
+        String sql = "INSERT INTO colis(description, poids, dimensions, valeur) VALUES (?,?,?,?)";
+        return this.jdbcTemplate.update(
+                sql,
+                colis.getDescription(),
+                colis.getPoids(),
+                colis.getDimensions(),
+                colis.getValeur());
+    }
+
+    public int update(Colis colis) {
+        String sql = "UPDATE colis set description=?, poids=?, dimensions=?, valeur=? WHERE Id=?";
+        return this.jdbcTemplate.update(
+                sql,
+                colis.getDescription(),
+                colis.getPoids(),
+                colis.getDimensions(),
+                colis.getValeur(),
+                colis.getId());
+    }
+
+    public int delete(int id) {
+        String sql = "DELETE FROM colis WHERE Id=?";
+        return this.jdbcTemplate.update(sql, id);
+    }
 }

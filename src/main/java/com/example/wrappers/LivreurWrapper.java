@@ -11,6 +11,7 @@ import com.example.model.Livreur;
 @Component
 public class LivreurWrapper implements RowMapper<Livreur> {
 
+    @SuppressWarnings("null")
     @Override
     public Livreur mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new Livreur(

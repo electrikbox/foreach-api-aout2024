@@ -1,13 +1,14 @@
 @base = http://localhost:8080/foreach-api
 
 
-# livreurs =========================================
+
+# livreurs ====================================================================
 
 GET {{base}}/livreurs HTTP/1.1
 
 ###
 
-GET {{base}}/livreurs/1 HTTP/1.1
+GET {{base}}/livreurs/2 HTTP/1.1
 
 ###
 
@@ -15,10 +16,10 @@ POST {{base}}/livreurs HTTP/1.1
 content-type: application/json
 
 {
-    "nom": "Michel",
-    "prenom": "michel",
-    "telephone": "0662666007",
-    "email": "michel@michel.com"
+    "nom": "Pat",
+    "prenom": "Pat",
+    "telephone": "0662666008",
+    "email": "pat@pat.com"
 }
 
 ###
@@ -37,7 +38,45 @@ DELETE {{base}}/livreurs/1 HTTP/1.1
 
 ###
 
-# colis =========================================
+
+
+# Users =======================================================================
+
+GET {{base}}/users HTTP/1.1
+
+###
+
+GET {{base}}/users/1 HTTP/1.1
+
+###
+
+POST {{base}}/users HTTP/1.1
+content-type: application/json
+
+{
+    "nom": "Emily",
+    "prenom": "Emily",
+    "email": "emily@emily.com"
+}
+
+###
+
+PATCH {{base}}/users/2 HTTP/1.1
+content-type: application/json
+
+{
+    "prenom": "Pat"
+}
+
+###
+
+DELETE {{base}}/users/3 HTTP/1.1
+
+###
+
+
+
+# colis =======================================================================
 
 GET {{base}}/colis HTTP/1.1
 
@@ -51,10 +90,11 @@ POST {{base}}/colis HTTP/1.1
 content-type: application/json
 
 {
-    "nom": "Michel",
-    "prenom": "michel",
-    "telephone": "0662666007",
-    "email": "michel@michel.com"
+    "livraison": { "id": "6" },
+    "description":"carte cadeau",
+    "poids":5.56,
+    "dimensions":"60x20",
+    "valeur":5.0
 }
 
 ###
@@ -63,8 +103,8 @@ PATCH {{base}}/colis/1 HTTP/1.1
 content-type: application/json
 
 {
-    "nom": "Michel",
-    "email": "michel@newmichel.com"
+    "description": "fusée pour aller sur mars",
+    "valeur": 52.4
 }
 
 ###
@@ -73,3 +113,44 @@ DELETE {{base}}/colis/1 HTTP/1.1
 
 ###
 
+
+
+# Livraison ===================================================================
+
+GET {{base}}/livraisons HTTP/1.1
+
+###
+
+GET {{base}}/livraisons/7 HTTP/1.1
+
+###
+
+GET {{base}}/livraisons/user/3 HTTP/1.1
+
+###
+
+POST {{base}}/livraisons HTTP/1.1
+content-type: application/json
+
+{
+    "livreur": { "id": "5" },
+    "user": { "id": "4" },
+    "colis": { "id": "7" },
+    "date_livraison": "2025-01-31",
+    "status": "pending"
+}
+
+###
+
+PATCH {{base}}/livraisons/7 HTTP/1.1
+content-type: application/json
+
+{
+    "status": "delivered"
+}
+
+###
+
+DELETE {{base}}/livraisons/10 HTTP/1.1
+
+### 
