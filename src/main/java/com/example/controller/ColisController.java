@@ -68,12 +68,16 @@ public class ColisController {
     @GetMapping("/{id}")
     public ResponseEntity<String> getByID(@PathVariable("id") int id) {
         try {
-            String jsonData = objectMapper.writeValueAsString(colisService.getByID(id));
+            Colis colis = colisService.getByID(id);
+            if (colis == null) {
+                return new ResponseEntity<>("Colis not found", HttpStatus.NOT_FOUND);
+            }
+            String jsonData = objectMapper.writeValueAsString(colis);
             HttpHeaders headers = new HttpHeaders();
             headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
             return new ResponseEntity<>(jsonData, headers, HttpStatus.OK);
         } catch (JsonProcessingException ex) {
-            return new ResponseEntity<>("Not Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -92,7 +96,7 @@ public class ColisController {
             headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
             return new ResponseEntity<>(jsonData, headers, HttpStatus.CREATED);
         } catch (JsonProcessingException e) {
-            return new ResponseEntity<>("Not Found", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Error processing JSON", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -121,10 +125,9 @@ public class ColisController {
 
             colisService.update(existingColis);
             String jsonData = objectMapper.writeValueAsString("Colis Modifié");
-            headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
-            return new ResponseEntity<>(jsonData, headers, HttpStatus.CREATED);
+            return new ResponseEntity<>(jsonData, headers, HttpStatus.OK);
         } catch (JsonProcessingException e) {
-            return new ResponseEntity<>("Not Updated", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Error processing JSON", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

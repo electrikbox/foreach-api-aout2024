@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
     @GetMapping
     public ResponseEntity<String> getAll() {
-        String jsonData = "{\"message\":\"Hello World\"}";
+        String jsonData = "{\"message\":\"Welcome to the Colis API\"}";
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
         return new ResponseEntity<>(jsonData, headers, HttpStatus.OK);
